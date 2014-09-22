@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:impl="http://ejb.mauo.correos.es"
+                  xmlns:intf="http://ejb.mauo.correos.es" xmlns:tns="http://ejb.mauo.correos.es"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ejb.mauo.correos.es">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:SOAP_ENC="http://schemas.xmlsoap.org/soap/encoding/"
+                elementFormDefault="qualified" targetNamespace="http://ejb.mauo.correos.es"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <xsd:element name="localizadorConsulta">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="codigoPostal">
+                            <xsd:simpleType>
+                                <xsd:restriction base="string">
+                                    <xsd:maxLength value="10"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="localizadorRespuesta">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="0" name="arrayOficina" type="tns:arrayOfoficina"/>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="error" type="integer"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="oficina">
+                <xsd:sequence>
+                    <xsd:element name="unidad">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="10"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="nombre">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="150"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="ind_ambitoCodigo">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="1"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="direccion">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="150"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="cp">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="10"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="codLocalidad">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="13"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="descLocalidad">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="80"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="coorXETRS89">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:float">
+                                <xsd:minInclusive value="-9999999.99999999999"/>
+                                <xsd:maxInclusive value="9999999.99999999999"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="coorYETRS89">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:float">
+                                <xsd:minInclusive value="-9999999.99999999999"/>
+                                <xsd:maxInclusive value="9999999.99999999999"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="coorXWGS84">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:float">
+                                <xsd:minInclusive value="-9999999.99999999999"/>
+                                <xsd:maxInclusive value="9999999.99999999999"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="coorYWGS84">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:float">
+                                <xsd:minInclusive value="-9999999.99999999999"/>
+                                <xsd:maxInclusive value="9999999.99999999999"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="telefono">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="20"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="horarioLV">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="60"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="horarioS">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="60"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="horarioF">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="60"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="arrayOfoficina">
+                <xsd:complexContent>
+                    <xsd:restriction base="SOAP_ENC:Array">
+                        <xsd:attribute ref="SOAP_ENC:arrayType" wsdl:arrayType="tns:oficina[]"/>
+                    </xsd:restriction>
+                </xsd:complexContent>
+            </xsd:complexType>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="localizadorRequest">
+        <wsdl:part element="intf:localizadorConsulta" name="localizadorConsulta"/>
+    </wsdl:message>
+    <wsdl:message name="localizadorResponse">
+        <wsdl:part element="intf:localizadorRespuesta" name="localizadorRespuesta"/>
+    </wsdl:message>
+    <wsdl:portType name="ServicioLocalizador">
+        <wsdl:operation name="procesaLocalizador">
+            <wsdl:input message="impl:localizadorRequest" name="localizadorRequest"/>
+            <wsdl:output message="impl:localizadorResponse" name="localizadorResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WSLocalizador" type="intf:ServicioLocalizador">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="procesaLocalizador">
+            <wsdlsoap:operation soapAction="procesaLocalizador"/>
+            <wsdl:input name="localizadorRequest">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="localizadorResponse">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LocalizadorService">
+        <wsdl:port binding="intf:WSLocalizador" name="Localizador">
+            <wsdlsoap:address location="http://desaws.correos.es:7181/BKDEWS01/maestro/services/Localizador"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
